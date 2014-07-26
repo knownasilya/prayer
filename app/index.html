@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Prayer</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {{BASE_TAG}}
+
+    <link rel="stylesheet" href="assets/vendor.css">
+    <link rel="stylesheet" href="assets/prayer.css">
+  </head>
+  <body>
+    <script>
+      window.PrayerENV = {{ENV}};
+      window.EmberENV = window.PrayerENV.EmberENV;
+    </script>
+    <script src="assets/vendor.js"></script>
+    <script src="assets/prayer.js"></script>
+    <script>
+      window.Prayer = require('prayer/app')['default'].create(PrayerENV.APP);
+    </script>
+  </body>
+</html>
