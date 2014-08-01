@@ -1,0 +1,19 @@
+
+<ul class="list-unstyled">
+  {{#each content}}
+    <li>
+      <h3>
+        {{created}}
+        {{#if title}}
+          - {{title}}
+        {{/if}}
+        <button type="button" class="btn btn-default pull-right">Answered</button>
+      </h3>
+      <p>{{prayer}}</p>
+    </li>
+  {{else}}
+    <li>
+      <p>There are currently no prayers. You can add a prayer {{#link-to 'prayers.new'}}here{{/link-to}}.</p>
+    </li>
+  {{/each}}
+</ul>
