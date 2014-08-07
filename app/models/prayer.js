@@ -1,25 +1,25 @@
-import DS from 'ember-data';
 /* global moment */
+import DS from 'ember-data';
+
+var attr = DS.attr;
 
 var PrayerModel = DS.Model.extend({
-  title: DS.attr('string'),
-  prayer: DS.attr('string'),
-  dateCreated: DS.attr('date'),
+  title: attr('string'),
+  prayer: attr('string'),
+  dateCreated: attr('date'),
+  dateAnswered: attr('date'),
 
-  created: function () {
-    var dateCreated = this.get('dateCreated');
+  created: momentize('dateCreated'),
+  answered: momentize('dateAnswered'),
 
-    if (!dateCreated) {
-      return;
+  summary: function () {
+    var prayer = this.get('prayer');
+
+    if (prayer) {
+      var isBigger = prayer.length >= 200;
+      return prayer.slice(0, isBigger ? 200 : prayer.length - 1) + (isBigger ? '...' : '');
     }
-
-    var now = moment();
-    var created = moment(dateCreated);
-    var createdWeek = created.week();
-    var nowWeek = now.week();
-
-    return createdWeek < nowWeek ? created.format('MMMM Do') : created.format('dddd, MMMM Do');
-  }.property('dateCreated')
+  }.property('prayer')
 });
 
 PrayerModel.reopenClass({
@@ -34,3 +34,20 @@ PrayerModel.reopenClass({
 });
 
 export default PrayerModel;
+
+function momentize(attr) {
+  return function () {
+    var rawDate = this.get(attr);
+
+    if (!rawDate) {
+      return;
+    }
+
+    var now = moment();
+    var created = moment(rawDate);
+    var createdWeek = created.week();
+    var nowWeek = now.week();
+
+    return createdWeek < nowWeek ? created.format('MMMM Do') : created.format('dddd, MMMM Do');
+  }.property(attr);
+}

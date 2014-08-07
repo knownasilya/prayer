@@ -25,7 +25,7 @@ var PrayersNewController = Ember.ObjectController.extend({
       model.set('dateCreated', new Date());
 
       model.save().then(function () {
-        self.transitionToRoute('prayers');
+        self.transitionToRoute('index');
       });
     }
   }
