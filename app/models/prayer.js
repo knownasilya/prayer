@@ -6,20 +6,12 @@ var attr = DS.attr;
 var PrayerModel = DS.Model.extend({
   title: attr('string'),
   prayer: attr('string'),
+  answer: attr('string'),
   dateCreated: attr('date'),
   dateAnswered: attr('date'),
 
   created: momentize('dateCreated'),
-  answered: momentize('dateAnswered'),
-
-  summary: function () {
-    var prayer = this.get('prayer');
-
-    if (prayer) {
-      var isBigger = prayer.length >= 200;
-      return prayer.slice(0, isBigger ? 200 : prayer.length - 1) + (isBigger ? '...' : '');
-    }
-  }.property('prayer')
+  answered: momentize('dateAnswered')
 });
 
 PrayerModel.reopenClass({

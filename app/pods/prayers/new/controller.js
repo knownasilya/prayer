@@ -1,6 +1,5 @@
 import Ember from 'ember';
 
-
 var PrayersNewController = Ember.ObjectController.extend({
   actions: {
     save: function (prayer) {

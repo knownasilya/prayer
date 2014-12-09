@@ -9,11 +9,11 @@
               - {{title}}
             {{/if}}
 
-            <button type="button" {{bind-attr class=':btn answered:btn-link:btn-default :pull-right'}} {{action 'markAnswered'}}>
+            {{#link-to 'prayer.answer' id class='btn btn-default pull-right'}}
               Mark Answered
-            </button>
+            {{/link-to}}
           </h3>
-          <p>{{summary}}</p>
+          <p>{{truncated-summary prayer}}</p>
         </li>
       {{else}}
         <li>
@@ -39,7 +39,6 @@
             {{/if}}
 
             <button type="button" {{bind-attr class=':btn answered:btn-link:btn-default :pull-right answered:disabled'}}>
-              Answered<br>
               {{answered}}
             </button>
           </h3>
