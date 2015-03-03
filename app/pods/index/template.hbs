@@ -4,10 +4,7 @@
       {{#each unansweredPrayers itemController='basic-prayer'}}
         <li>
           <h3>
-            {{created}}
-            {{#if title}}
-              - {{title}}
-            {{/if}}
+            {{created}} - {{title}}
 
             {{#link-to 'prayer.answer' id class='btn btn-default pull-right'}}
               Mark Answered
