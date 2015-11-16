@@ -1,12 +1,12 @@
 import Ember from 'ember';
 
-export default Ember.ObjectController.extend({
+export default Ember.Controller.extend({
   actions: {
-    save: function (answer) {
+    save(answer) {
       var self = this;
       var model = this.get('model');
 
-      model.set('prayer', answer); 
+      model.set('prayer', answer);
       model.set('dateAnswered', new Date());
 
       model.save().then(function () {

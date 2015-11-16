@@ -1,23 +1,29 @@
 import Ember from 'ember';
 
-export default Ember.ArrayController.extend({
-  answeredPrayers: function () {
-    var content = this.get('content');
+const { computed } = Ember;
 
-    if (content) {
-      return content.filter(function (item) {
-        return item.get('answered');
-      });    
-    }
-  }.property('content.@each.answered'),
-  
-  unansweredPrayers: function () {
-    var content = this.get('content');
+export default Ember.Controller.extend({
+  answeredPrayers: computed('model.@each.answered', {
+    get() {
+      var model = this.get('model');
 
-    if (content) {
-      return content.filter(function (item) {
-        return !item.get('answered');
-      });    
+      if (model) {
+        return model.filter(function (item) {
+          return item.get('answered');
+        });
+      }
     }
-  }.property('content.@each.answered')
+  }),
+
+  unansweredPrayers: computed('model.@each.answered', {
+    get() {
+      var model = this.get('model');
+
+      if (model) {
+        return model.filter(function (item) {
+          return !item.get('answered');
+        });
+      }
+    }
+  })
 });

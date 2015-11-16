@@ -1,0 +1,8 @@
+<h3>
+  {{prayer.created}} - {{prayer.title}}
+
+  {{#link-to 'prayers.answer' prayer.id class='btn btn-default pull-right'}}
+    Mark Answered
+  {{/link-to}}
+</h3>
+<p>{{truncated-summary prayer.prayer}}</p>

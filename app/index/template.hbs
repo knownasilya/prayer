@@ -1,17 +1,8 @@
 <div class="row">
   <div class="col-xs-12">
     <ul class="list-unstyled">
-      {{#each unansweredPrayers itemController='basic-prayer'}}
-        <li>
-          <h3>
-            {{created}} - {{title}}
-
-            {{#link-to 'prayers.answer' id class='btn btn-default pull-right'}}
-              Mark Answered
-            {{/link-to}}
-          </h3>
-          <p>{{truncated-summary prayer}}</p>
-        </li>
+      {{#each unansweredPrayers as |prayer|}}
+        {{basic-prayer prayer=prayer}}
       {{else}}
         <li>
           <p class="lead">All prayers have been answered, amen!</p>
